@@ -1,7 +1,7 @@
 # FreeCodeCamp Front End Libraries Projects
 ## Build a Random Quote Machine
 
-## Demo: mckelveygreg.github.io/dad-jokes
+## Demo: https://mckelveygreg.github.io/dad-jokes
 
 Built with React.
 Twitter share from npm react-share https://github.com/nygardk/react-share
