@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { TwitterShareButton } from 'react-share';
+import { TwitterIcon } from 'react-share';
 import "./index.css";
 
 class Main extends Component {
@@ -91,10 +93,13 @@ class Main extends Component {
         } else {
             return (
                 <div id='quote-box'>
-                    <p id='joke'>{currentJoke}</p>
+                    <p id='text'>{currentJoke}</p>
                     <p id='author'>{author}</p>
                     <button id='new-quote' onClick={this.newJoke}>Moar Jokes!</button>
-                    <a id='tweet-quote' href='twitter.com/intent/tweet'>Tweet Joke!</a>
+                    <TwitterShareButton id='tweet-quote' url={window.location.href} title={currentJoke + ' ' + author}>
+                        Tweet Joke! <TwitterIcon size={32} round={true} />
+                    </TwitterShareButton>
+                   {/* <a id='tweet-quote' href='twitter.com/intent/tweet'>Tweet Joke!</a> */}
                 </div>
             );
         }

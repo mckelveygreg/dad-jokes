@@ -6,3 +6,13 @@
     background-color: palevioletred;
     padding: 25px;
 }
+
+.SocialMediaShareButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 200px;
+    margin: 20px auto;
+    background-color: rgba(81, 211, 81, 0.9);
+}
