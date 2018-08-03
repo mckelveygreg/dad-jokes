@@ -1,0 +1,8 @@
+
+#quote-box {
+    margin: 50px auto;
+    max-width: 800px;
+    text-align: center;
+    background-color: palevioletred;
+    padding: 25px;
+}
