@@ -9,7 +9,7 @@ class Main extends Component {
 
         this.state = {
             currentJoke: '',
-            pastJokes: [],
+            jokeArray: [],
             author: '',
             error: null,
             isLoaded: false
@@ -32,7 +32,8 @@ class Main extends Component {
                 //console.log('made it to result? ' + result);
                 this.setState({
                     isLoaded: true,
-                    currentJoke: result.joke
+                    currentJoke: result.joke,
+                    jokeArray: result.joke.replace(/([.?!])\s*(?=[A-Z])/g, "$1|").split("|") // from https://stackoverflow.com/questions/18914629/split-string-into-sentences-in-javascript
                 });
             },
             // Error Handling, so not to get mixed up with react errors
@@ -83,8 +84,13 @@ class Main extends Component {
     }
 
     render() {
-        const { currentJoke, author, error, isLoaded } = this.state;
+        const { currentJoke, jokeArray, author, error, isLoaded } = this.state;
         //console.log(currentJoke + ' currentJoke; ' + error + ' error; ' + isLoaded + " isLoaded" );
+        const jokeSentences = jokeArray.map((joke, indx) => (
+            <p key={indx}>
+                {joke}
+            </p>
+        ));
 
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -93,13 +99,19 @@ class Main extends Component {
         } else {
             return (
                 <div id='quote-box'>
-                    <p id='text'>{currentJoke}</p>
+                    {/*<p id='text'>{currentJoke}</p> */}
+                    
+                    <div id='text'>{jokeSentences}</div>
+                    
                     <p id='author'>{author}</p>
-                    <button id='new-quote' onClick={this.newJoke}>Moar Jokes!</button>
-                    <TwitterShareButton id='tweet-quote' url={window.location.href} title={currentJoke + ' ' + author}>
-                        Tweet Joke! <TwitterIcon size={32} round={true} />
-                    </TwitterShareButton>
-                   {/* <a id='tweet-quote' href='twitter.com/intent/tweet'>Tweet Joke!</a> */}
+                    <div id='buttons'>
+                        <TwitterShareButton id='tweet-quote' className='button' url={window.location.href} title={currentJoke + ' ' + author}>
+                            <p>Tweet Joke!</p>
+                            <TwitterIcon size={32} round={true} />
+                        </TwitterShareButton>
+                        <a href="#" id='new-quote' class='button' onClick={this.newJoke}>Moar Jokes!</a>
+                        {/* <a id='tweet-quote' href='twitter.com/intent/tweet'>Tweet Joke!</a> */}
+                    </div>
                 </div>
             );
         }
