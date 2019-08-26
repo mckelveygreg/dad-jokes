@@ -6,7 +6,7 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
-    "react-share": "^2.2.0",
+    "react-share": "^3.0.1",
     "react-transition-group": "^1.2.1"
   },
   "scripts": {
